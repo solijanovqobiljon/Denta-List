@@ -140,7 +140,7 @@ function Boshsaxifa() {
         </h1>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
           {/* DoctorCard lar shu yerda */}
-          <DoctorCard img={Denta5} name="Dr. Omontayev Xayotillo" job="Ortoped" rating="5" distance="2 km" price="350 000" patients="254" exp="12" service={true} />
+          <DoctorCard img={Denta5} name="Dr. Omontayev Xayotillo" job="Terapet" rating="5" distance="2 km" price="350 000" patients="200" exp="3" service={true} />
           <DoctorCard img={Denta1} name="Dr. Jamshid Rahmonov" job="Ortoped" rating="4.9" distance="5 km" price="250 000" patients="254" exp="12" service={true} />
           <DoctorCard img={Denta2} name="Dr. O‘tkir Rustamov" job="Terapevt" rating="4.9" distance="4 km" price="255 000" patients="124" exp="10" service={false} />
           <DoctorCard img={Denta3} name="Dr. Asadbek Luqmonov" job="Jarroh" rating="3.9" distance="2.5 km" price="250 000" patients="254" exp="12" service={false} />
