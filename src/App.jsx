@@ -15,6 +15,8 @@ import Sitebar from "./sitebar";
 import Shifokorlarim from "./pages/Shifokorlarim";
 import Profil_pages from "./pages/profil";
 import Notification from "./pages/Notification";
+import Yoqtirishlar from "./pages/yoqtirishlar";
+import Sharhlar from "./pages/sharhlar";
 
 const App = () => {
   return (
@@ -38,6 +40,8 @@ const App = () => {
       <Route path="shifokorlar" element={<Shifokorlarim />} />
       <Route path="profil" element={<Profil_pages />} />
       <Route path="Notification" element={<Notification />} />
+      <Route path="yoqtirishlar" element={<Yoqtirishlar />} />
+      <Route path="sharhlar" element={<Sharhlar />} />
     </Routes>
     <Sitebar/>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react'; // useState import qilindi
 import { useNavigate } from 'react-router-dom';
 // React Icons'dan kerakli ikonkalarni import qilamiz
 import { FaChevronLeft, FaSearch, FaRegBell, FaRegCommentDots } from "react-icons/fa";
@@ -11,51 +11,65 @@ import profileImg from "../assets/denta1.jpg" // Rasm fayli importi
 
 function Profil_pages() {
     const navigate = useNavigate();
+    
+    // Modal holatini boshqarish uchun state
+    const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); 
 
     // Ranglar konstantalari
     const primaryTeal = '#00BCE4'; // Moviy-firuzarang
     const darkText = '#272937'; // Asosiy matn
     const white = '#FFFFFF';
 
-    // Menyu elementlari ro'yxati (Ikonka, Matn, Yo'nalish)
+    // Tizimdan chiqishni tasdiqlash funksiyasi
+    const handleConfirmLogout = () => {
+        // Hozirgi modalni yopamiz
+        setIsLogoutModalOpen(false);
+        // Tizimdan chiqish logikasi (masalan, token o'chirish)
+        console.log("Foydalanuvchi tizimdan chiqdi.");
+        // Login sahifasiga yo'naltirish
+        navigate('/login');
+    };
+    
+    // Tizimdan chiqishni bekor qilish funksiyasi
+    const handleCancelLogout = () => {
+        setIsLogoutModalOpen(false); // Modalni yopish
+    };
+
+
+    // Menyu elementlari ro'yxati (Tizimdan chiqish tugmasi endi modalni ochadi)
     const menuItems = [
-        { Icon: FaUserDoctor, label: 'Mening shifokorlarim', path: '/shifokorlar' }, // Route nomi '/shifokorlar' bo'lsa
+        { Icon: FaUserDoctor, label: 'Mening shifokorlarim', path: '/shifokorlar' },
         { Icon: IoIosHeartEmpty, label: 'Yoqtirishlar', path: '/yoqtirishlar' },
         { Icon: BsChatText, label: 'Sharhlar', path: '/sharhlar' },
         { Icon: MdOutlineModeEdit, label: "Ma'lumotlarni o'zgartirish", path: '/profile' }, 
-        { Icon: FiLogOut, label: 'Tizimdan chiqish', action: () => {
-            console.log("Tizimdan chiqish...");
-            navigate('/login'); // Chiqishdan keyin login sahifasiga yo'naltirish
-        }},
+        // "Tizimdan chiqish" tugmasini bosganda modalni ochish uchun
+        { Icon: FiLogOut, label: 'Tizimdan chiqish', action: () => setIsLogoutModalOpen(true) }, 
     ];
 
     // Orqaga qaytish funksiyasi
     const handleGoBack = () => {
-        navigate(-1); // Bir sahifa orqaga qaytish
+        navigate(-1);
     };
     
-    // Notification sahifasiga o'tish funksiyasi (Talabga binoan '/Notification' ga o'tadi)
+    // Notification sahifasiga o'tish funksiyasi
     const handleGoToNotifications = () => {
         navigate('/Notification'); 
     };
 
     return (
-        <div className='min-h-screen bg-white pb-[80px]'> {/* Pastki Sitebar uchun padding qo'shildi */}
+        <div className='min-h-screen bg-white pb-[80px]'> 
             
             {/* Yuqori Sarlavha (Header) */}
             <header className={`bg-[${primaryTeal}] p-4 pb-16 pt-8 rounded-b-[40px] shadow-lg relative`}>
                 <div className="flex justify-between items-center mb-6">
-                    {/* Orqaga qaytish o'qi */}
                     <FaChevronLeft 
                         className={`text-white text-2xl cursor-pointer`}
                         onClick={handleGoBack}
                     />
-                    {/* Chat Ikonkasi */}
                     <BsChatText className={`text-white text-2xl cursor-pointer`} /> 
                 </div>
 
                 <div className="flex items-center space-x-4 relative">
-                    {/* Profil Rasmi */}
                     <div className="relative">
                         <img 
                             src={profileImg} 
@@ -63,9 +77,7 @@ function Profil_pages() {
                             className="w-20 h-20 rounded-full border-4 border-white object-cover"
                             style={{ boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
                         />
-                        {/* Status/Kamera Ikonkasi */}
                         <div className="absolute bottom-0 right-0 w-6 h-6 bg-green-500 rounded-full flex justify-center items-center border border-white">
-                            {/* Rasmda bu yerda kamera ikonkasiga o'xshash belgi bor, FaRegCommentDots hozircha qoldirildi */}
                             <FaRegCommentDots className="text-white text-xs"/> 
                         </div>
                     </div>
@@ -79,6 +91,7 @@ function Profil_pages() {
                 </div>
             </header>
 
+            {/* Asosiy Kontent */}
             <div className='p-4 pt-0'>
                 
                 <div className='relative -mt-8 mb-8'>
@@ -91,7 +104,7 @@ function Profil_pages() {
                     
                     <FaRegBell 
                         className='absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-lg cursor-pointer'
-                        onClick={handleGoToNotifications} // '/Notification' ga o'tadi
+                        onClick={handleGoToNotifications}
                     />
                 </div>
 
@@ -100,6 +113,7 @@ function Profil_pages() {
                         <li 
                             key={index} 
                             className={`p-4 flex items-center cursor-pointer hover:bg-gray-50 transition ${index < menuItems.length - 1 ? 'border-b border-gray-100' : ''}`}
+                            // Agar action bo'lsa actionni, aks holda navigate ni chaqiradi
                             onClick={item.action ? item.action : () => navigate(item.path)}
                         >
                             <item.Icon className={`text-xl text-[${darkText}] mr-4`} />
@@ -108,9 +122,41 @@ function Profil_pages() {
                     ))}
                 </ul>
 
-                {/* Sitebar uchun bo'sh joy */}
                 <div className='h-4'></div>
             </div>
+
+            {/* >>> TIZIMDAN CHIQISH MODALI <<< */}
+            {isLogoutModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-xl shadow-2xl mx-6 p-6 w-11/12 max-w-sm">
+                        
+                        {/* Modal matni */}
+                        <h3 className={`text-center text-lg font-semibold text-[${darkText}] mb-6`}>
+                            Rostdan ham tizimdan chiqmoqchimisiz?
+                        </h3>
+
+                        <div className="flex flex-col space-y-3">
+                            {/* Yo'q / Bekor qilish tugmasi */}
+                            <button
+                                onClick={handleCancelLogout}
+                                className={`w-full h-12 bg-[${primaryTeal}] text-white text-base font-semibold rounded-xl hover:bg-cyan-600 transition`}
+                            >
+                                Yo'q
+                            </button>
+
+                            {/* Ha / Tasdiqlash tugmasi */}
+                            <button
+                                onClick={handleConfirmLogout}
+                                className={`w-full h-12 border border-[${primaryTeal}] text-[${primaryTeal}] text-base font-semibold rounded-xl hover:bg-gray-100 transition`}
+                            >
+                                Ha
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* >>> MODAL TUGADI <<< */}
+
         </div>
     );
 }

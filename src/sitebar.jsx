@@ -12,7 +12,9 @@ function Sitebar() {
         '/boshsaxifa',
         '/shifokorlar',
         '/profil',
-        '/Notification' 
+        '/Notification', 
+        '/sharhlar', 
+        '/yoqtirishlar' 
     ];
     
     // >>>>>>>>>>> BU YERDA O'ZGARISH QILINDI <<<<<<<<<<<
