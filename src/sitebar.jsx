@@ -53,7 +53,7 @@ function Sitebar() {
                                     <p className={`text-[12px] ${textColor} mt-1`}>{item.label}</p>
                                     
                                     {isActive && (
-                                        <hr className='w-[20px] m-auto border-[1.5px] rounded-3xl border-[#00BCE4]' />
+                                        <hr className='w-5 m-auto border-[1.5px] rounded-3xl border-[#00BCE4]' />
                                     )}
                                 </Link>
                             </li>

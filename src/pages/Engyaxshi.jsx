@@ -11,6 +11,8 @@ import Denta1 from "../assets/denta1.jpg";
 import Denta2 from "../assets/denta2.jpg";
 import Denta3 from "../assets/denta3.jpg";
 import Denta4 from "../assets/denta4.jpg";
+import Denta5 from "../assets/denta5.png";
+
 import DoctorCard from "./DoctorCard";
 import { useNavigate } from 'react-router-dom';
 
@@ -137,6 +139,7 @@ function Boshsaxifa() {
        
 
           {/* Copylar */}
+          <DoctorCard img={Denta5} name="Dr. Omontayev Xayotillo" job="Ortoped" rating="5" distance="2 km" price="350 000" patients="254" exp="12" service={true} />
           <DoctorCard img={Denta1} name="Dr. Jamshid Rahmonov" job="Ortoped" rating="4.9" distance="5 km" price="250 000" patients="254" exp="12" service={true} />
           <DoctorCard img={Denta2} name="Dr. O‘tkir Rustamov" job="Terapevt" rating="4.9" distance="4 km" price="255 000" patients="124" exp="10" service={false} />
           <DoctorCard img={Denta3} name="Dr. Asadbek Luqmonov" job="Jarroh" rating="3.9" distance="2.5 km" price="250 000" patients="254" exp="12" service={false} />
