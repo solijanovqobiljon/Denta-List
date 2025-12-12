@@ -14,6 +14,10 @@ function Sitebar() {
         '/profil',
         '/Notification', 
         '/sharhlar', 
+        '/B24_7', 
+        '/EngYaqin', 
+        '/AyolDoktor', 
+        '/BolalarDoktori', 
         '/yoqtirishlar' 
     ];
     

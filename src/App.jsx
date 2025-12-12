@@ -17,6 +17,11 @@ import Profil_pages from "./pages/profil";
 import Notification from "./pages/Notification";
 import Yoqtirishlar from "./pages/yoqtirishlar";
 import Sharhlar from "./pages/sharhlar";
+import B24_7 from "./pages/B24_7";
+import EngYaqin from "./pages/engyaqin";
+import EngYaxshi from "./pages/Engyaxshi";
+import AyolDoktor from "./pages/AyolDoktor";
+import BolalarDoktori from "./pages/BolalarDoktori";
 
 const App = () => {
   return (
@@ -42,6 +47,11 @@ const App = () => {
       <Route path="Notification" element={<Notification />} />
       <Route path="yoqtirishlar" element={<Yoqtirishlar />} />
       <Route path="sharhlar" element={<Sharhlar />} />
+      <Route path="B24_7" element={<B24_7 />} />
+      <Route path="EngYaqin" element={<EngYaqin />} />
+      <Route path="EngYaxshi" element={<EngYaxshi />} />
+      <Route path="AyolDoktor" element={<AyolDoktor />} />
+      <Route path="BolalarDoktori" element={<BolalarDoktori />} />
     </Routes>
     <Sitebar/>
     </div>

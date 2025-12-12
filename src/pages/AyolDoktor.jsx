@@ -7,9 +7,9 @@ import { FaRegClock } from "react-icons/fa";
 import { SlCursor } from "react-icons/sl";
 import { CiStar } from "react-icons/ci";
 
-import Denta1 from "../assets/denta1.jpg";
-import Denta2 from "../assets/denta2.jpg";
-import Denta3 from "../assets/denta3.jpg";
+import DentaA3 from "../assets/dentaA3.png";
+import DentaA2 from "../assets/dentaA2.png";
+import DentaA1 from "../assets/dentaA1.png";
 import Denta4 from "../assets/denta4.jpg";
 import DoctorCard from "./DoctorCard";
 import { useNavigate } from 'react-router-dom';
@@ -60,11 +60,8 @@ function Boshsaxifa() {
           {/* Barchasi */}
           <div
             onClick={() => handleFilterClick("barchasi", "/boshsaxifa")}
-            className={`px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
-              activeFilter === "barchasi"
-                ? "bg-[#BDF3FF] text-black"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
+            className={"px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all bg-gray-200 text-gray-700 hover:bg-gray-300"}
+
           >
             Barchasi
           </div>
@@ -84,11 +81,8 @@ function Boshsaxifa() {
           {/* Eng yaqin */}
           <div
             onClick={() => handleFilterClick("yaqin", "/EngYaqin")}
-            className={`px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
-              activeFilter === "yaqin"
-                ? "bg-[#BDF3FF] text-black"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
+            className={"px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all bg-gray-200 text-gray-700 hover:bg-gray-300"}
+
           >
             <SlCursor className="text-lg" /> Eng yaqin
           </div>
@@ -96,11 +90,8 @@ function Boshsaxifa() {
           {/* Eng yaxshi */}
           <div
             onClick={() => handleFilterClick("yaxshi", "/EngYaxshi")}
-            className={`px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
-              activeFilter === "yaxshi"
-                ? "bg-[#BDF3FF] text-black"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
+            className={"px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all bg-gray-200 text-gray-700 hover:bg-gray-300"}
+
           >
             <CiStar className="text-lg" /> Eng yaxshi
           </div>
@@ -108,11 +99,8 @@ function Boshsaxifa() {
           {/* Ayol doktori */}
           <div
             onClick={() => handleFilterClick("ayol", "/AyolDoktor")}
-            className={`px-4 py-2 rounded-2xl text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
-              activeFilter === "ayol"
-                ? "bg-[#BDF3FF] text-black"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
+            className={"px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all bg-[#BDF3FF] text-black"}
+
           >
             Ayol doktori
           </div>
@@ -139,16 +127,15 @@ function Boshsaxifa() {
         </h1>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4">
           {/* DoctorCard lar shu yerda */}
-          <DoctorCard img={Denta1} name="Dr. Jamshid Rahmonov" job="Ortoped" rating="4.9" distance="5 km" price="250 000" patients="254" exp="12" service={true} />
-          <DoctorCard img={Denta2} name="Dr. O‘tkir Rustamov" job="Terapevt" rating="4.9" distance="4 km" price="255 000" patients="124" exp="10" service={false} />
-          <DoctorCard img={Denta3} name="Dr. Asadbek Luqmonov" job="Jarroh" rating="3.9" distance="2.5 km" price="250 000" patients="254" exp="12" service={false} />
-          <DoctorCard img={Denta4} name="Dr. Lobar Azizova" job="Implantolog" rating="3.7" distance="3 km" price="255 000" patients="120" exp="10" service={true} />
+          
+       
 
           {/* Copylar */}
-          <DoctorCard img={Denta1} name="Dr. Jamshid Rahmonov" job="Ortoped" rating="4.9" distance="5 km" price="250 000" patients="254" exp="12" service={true} />
-          <DoctorCard img={Denta2} name="Dr. O‘tkir Rustamov" job="Terapevt" rating="4.9" distance="4 km" price="255 000" patients="124" exp="10" service={false} />
-          <DoctorCard img={Denta3} name="Dr. Asadbek Luqmonov" job="Jarroh" rating="3.9" distance="2.5 km" price="250 000" patients="254" exp="12" service={false} />
-          <DoctorCard img={Denta4} name="Dr. Lobar Azizova" job="Implantolog" rating="3.7" distance="3 km" price="255 000" patients="120" exp="10" service={true} />
+          <DoctorCard img={Denta4} name="Dr. Lobar Azizova" job="Implantolog" rating="4.4" distance="2 km" price="255 000" patients="120" exp="10" service={true} />
+          <DoctorCard img={DentaA1} name="Dr. Marjona Nazarmatova" job="Implantolog" rating="4.1" distance="3 km" price="125 000" patients="120" exp="25" service={true} />
+          <DoctorCard img={DentaA2} name="Dr. Mubina Jalilova" job="Implantolog" rating="4.2" distance="3.1 km" price="200 000" patients="120" exp="10" service={true} />
+          <DoctorCard img={DentaA3} name="Dr. Aziza Xolmatova" job="Implantolog" rating="3.7" distance="3.2 km" price="255 000" patients="120" exp="5" service={true} />
+          <DoctorCard img={Denta4} name="Dr. Lobar Azizova" job="Implantolog" rating="3.6" distance="3.4 km" price="155 000" patients="120" exp="15" service={true} />
 
         </div>
       </div>

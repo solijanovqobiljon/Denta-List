@@ -52,26 +52,21 @@ function Notification() {
     ];
 
     return (
-        <div className='min-h-screen bg-gray-50 pb-20'> {/* Pastki Sitebar uchun padding qo'shildi */}
+        <div className='min-h-screen bg-gray-50 pb-20'> 
             
-            {/* Yuqori Sarlavha (Header) */}
             <header className={`bg-[${primaryTeal}] p-4 pb-16 pt-8 rounded-b-[40px] shadow-lg relative`}>
                 <div className="flex justify-between items-center mb-4">
-                    {/* Orqaga qaytish o'qi */}
                     <FaChevronLeft 
                         className={`text-white text-2xl cursor-pointer`} 
                         onClick={handleGoBack}
                     />
-                    {/* Chat Ikonkasi */}
                     <FaRegCommentDots className={`text-white text-2xl cursor-pointer`} /> 
                 </div>
 
-                {/* Sahifa nomi */}
                 <h1 className={`text-white text-2xl font-bold mb-4`}>
                     Bildirishnomalar
                 </h1>
 
-                {/* Qidiruv maydoni (Rasmdagi kabi) */}
                 <div className='relative'>
                     <input 
                         type="text"
