@@ -1,4 +1,3 @@
-/* Bosh ekran uchun markazlashtirish */
 .splash-screen {
     width: 100%;
     height: 100vh;
@@ -9,9 +8,8 @@
     overflow: hidden;
   }
   
-  /* Logo animatsiyasi */
   .logo {
-    width: 200px;   /* boshlang'ich o'lcham */
+    width: 200px;   
     height: 160px;
     animation: zoomOut 2s forwards;
   }
@@ -19,23 +17,21 @@
     line-height: 26px;
     font-weight: 600;
   }
-  /* Animatsiya */
   @keyframes zoomOut {
     0% {
       transform: scale(1);
       opacity: 1;
     }
     70% {
-      transform: scale(3); /* kattalashish */
+      transform: scale(3); 
       opacity: 1;
     }
     100% {
       transform: scale(15.5);
-      opacity: 0; /* yo'qoladi */
+      opacity: 0; 
     }
   }
   
-  /* Mobil uchun responsive */
   @media (max-width: 768px) {
     .logo {
       width: 150px;

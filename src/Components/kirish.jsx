@@ -9,7 +9,7 @@ function Kirish() {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate('/kirish2');
-    }, 2000); // 2 soniyadan keyin yo'naltirish
+    }, 2000); 
 
     return () => clearTimeout(timer);
   }, [navigate]);
