@@ -18,10 +18,14 @@ import Notification from "./pages/Notification";
 import Yoqtirishlar from "./pages/yoqtirishlar";
 import Sharhlar from "./pages/sharhlar";
 import B24_7 from "./pages/B24_7";
-import EngYaqin from "./pages/engyaqin";
+// import EngYaqin from "./pages/engyaqin";
 import EngYaxshi from "./pages/Engyaxshi";
 import AyolDoktor from "./pages/AyolDoktor";
 import BolalarDoktori from "./pages/BolalarDoktori";
+import QabulgaYozilish from "../src/pages/QabulgayozilishB";
+import QabulgaYozilish2B from "./pages/QabulgaYozilish2B";
+import QabulTasdiqlash from "./pages/QabulTasdiqlash";
+import Engyaqin from "./Engyaqin";
 
 const App = () => {
   return (
@@ -48,10 +52,15 @@ const App = () => {
       <Route path="yoqtirishlar" element={<Yoqtirishlar />} />
       <Route path="sharhlar" element={<Sharhlar />} />
       <Route path="B24_7" element={<B24_7 />} />
-      <Route path="EngYaqin" element={<EngYaqin />} />
+      {/* <Route path="EngYaqin" element={<EngYaqin />} />  */}
       <Route path="EngYaxshi" element={<EngYaxshi />} />
       <Route path="AyolDoktor" element={<AyolDoktor />} />
       <Route path="BolalarDoktori" element={<BolalarDoktori />} />
+      <Route path="qabulgayozilish" element={<QabulgaYozilish />} />
+        <Route path="qabulgayozilish2" element={<QabulgaYozilish2B />} />
+        <Route path="qabultasdiqlash" element={<QabulTasdiqlash />} />
+        <Route path="engyaqin" element={<Engyaqin />} />
+
     </Routes>
     <Sitebar/>
     </div>

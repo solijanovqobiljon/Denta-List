@@ -1,32 +1,38 @@
-import React, { useState } from 'react'; // useState import qilindi
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { 
     FaChevronLeft, 
     FaSearch, 
     FaRegBell, 
-    FaRegCommentDots, 
     FaStar, 
     FaHeart
 } from "react-icons/fa";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { LuMessageSquareText } from "react-icons/lu";
 import { FiPhone } from "react-icons/fi";
-import { FaUserGroup } from "react-icons/fa6"; // Bemorlar soni uchun
+import { FaUserGroup } from "react-icons/fa6";
 
-// Rasm importlari (sizning assets katalogingizga bog'liq)
-import doctor1Img from "../assets/denta1.jpg"; // Misol uchun: Ortoped shifokor rasmi
-import doctor2Img from "../assets/denta2.jpg"; // Misol uchun: Terapevt shifokor rasmi
+// Rasm importlari
+import doctor1Img from "../assets/denta1.jpg"; 
+import doctor2Img from "../assets/denta2.jpg"; 
+
+
+// === RANG KONSTANTALARI (Tailwindga yordam berish uchun CSS formatida saqlanadi) ===
+// Eslatma: Tailwind CSS dinamik klasslarni (masalan, `bg-[${variable}]`) to'g'ri tanimaydi. 
+// Shuning uchun bu ranglarni inline style yoki to'g'ridan-to'g'ri string orqali ishlatish kerak.
+const primaryTeal = '#00BCE4'; // Moviy-firuzarang
+const darkText = '#272937'; // Asosiy matn
+const accentRed = '#FF6F47'; // O'chirish (Trash) rangi
 
 
 function Yoqtirishlar() {
     const navigate = useNavigate();
 
     // === STATE LAR ===
-    // Modalni ochish/yopish uchun state
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-    // O'chiriladigan shifokor ID sini saqlash uchun state
     const [doctorToDeleteId, setDoctorToDeleteId] = useState(null);
-    // Shifokorlar ro'yxati (statega o'tkazish tavsiya etiladi, hozircha const)
+    
+    // Shifokorlar ro'yxati
     const [favoriteDoctors, setFavoriteDoctors] = useState([
         {
             id: 1,
@@ -51,11 +57,6 @@ function Yoqtirishlar() {
             image: doctor2Img,
         },
     ]);
-
-    // === RANG KONSTANTALARI ===
-    const primaryTeal = '#00BCE4'; // Moviy-firuzarang
-    const darkText = '#272937'; // Asosiy matn
-    const accentRed = '#FF6F47'; // O'chirish (Trash) rangi
     
     // === FUNKSIYALAR ===
     const handleGoBack = () => {
@@ -66,16 +67,21 @@ function Yoqtirishlar() {
         navigate('/Notification'); 
     };
     
+    // >>> QABULGA YOZILISH FUNKSIYASI - O'ZGARTIRILDI <<<
     const handleAppointment = (doctorId) => {
-        console.log(`Shifokor ${doctorId} ga qabulga yozilish`);
+        // Shifokor ID sini parametr sifatida /qabulgayozilish sahifasiga yuboramiz
+        navigate(`/qabulgayozilish?doctorId=${doctorId}`); 
+        console.log(`Shifokor ${doctorId} ga qabulga yozilish sahifasiga yo'naltirilmoqda.`);
     };
     
     const handleChat = (doctorId) => {
         console.log(`Shifokor ${doctorId} bilan chat`);
+        // navigate(`/chat/${doctorId}`); // Agar chat sahifangiz bo'lsa
     };
     
     const handleCall = (doctorId) => {
         console.log(`Shifokor ${doctorId} ga qo'ng'iroq`);
+        // window.location.href = `tel:+998xxxxxxxx`; // Qo'ng'iroq qilish uchun
     };
 
     // Yoqtirishdan olib tashlash MODALINI OCHISH funksiyasi
@@ -87,13 +93,11 @@ function Yoqtirishlar() {
     // Yoqtirishdan olib tashlashni TASDIQLASH funksiyasi
     const handleConfirmRemoveFavorite = () => {
         if (doctorToDeleteId !== null) {
-            // O'chirish logikasi: shifokorni ro'yxatdan olib tashlash
             setFavoriteDoctors(currentDoctors => 
                 currentDoctors.filter(doctor => doctor.id !== doctorToDeleteId)
             );
             console.log(`Shifokor ${doctorToDeleteId} yoqtirishlardan olib tashlandi.`);
         }
-        // Modalni yopish va state'ni tozalash
         setIsDeleteModalOpen(false);
         setDoctorToDeleteId(null);
     };
@@ -108,8 +112,11 @@ function Yoqtirishlar() {
     return (
         <div className='min-h-screen bg-gray-50 pb-[80px]'> 
             
-            {/* Yuqori Sarlavha (Header) */}
-            <header className={`bg-[${primaryTeal}] p-4 pb-16 pt-8 rounded-b-[40px] shadow-lg relative`}>
+            {/* Yuqori Sarlavha (Header) - Rang inline style orqali qo'llanildi */}
+            <header 
+                className={`p-4 pb-16 pt-8 rounded-b-[40px] shadow-lg relative`}
+                style={{backgroundColor: primaryTeal}}
+            >
                 <div className="flex justify-between items-center mb-6">
                     {/* Orqaga qaytish o'qi */}
                     <FaChevronLeft 
@@ -169,7 +176,12 @@ function Yoqtirishlar() {
 
                             {/* Matnli ma'lumotlar */}
                             <div className='flex-grow'>
-                                <h3 className={`text-lg font-bold text-[${darkText}]`}>{doctor.name}</h3>
+                                <h3 
+                                    className={`text-lg font-bold`} 
+                                    style={{color: darkText}}
+                                >
+                                    {doctor.name}
+                                </h3>
                                 <p className='text-gray-500 text-sm mb-2'>{doctor.specialty}</p>
 
                                 {/* Rating va Masofa */}
@@ -205,7 +217,8 @@ function Yoqtirishlar() {
                             {/* Qabulga yozilish tugmasi */}
                             <button
                                 onClick={() => handleAppointment(doctor.id)}
-                                className={`flex-1 h-12 border border-[${primaryTeal}] text-[${primaryTeal}] text-base font-semibold rounded-full hover:bg-cyan-50 transition`}
+                                className={`flex-1 h-12 border text-base font-semibold rounded-full hover:bg-cyan-50 transition`}
+                                style={{borderColor: primaryTeal, color: primaryTeal}}
                             >
                                 Qabulga yozilish
                             </button>
@@ -213,8 +226,8 @@ function Yoqtirishlar() {
                             {/* Xabar tugmasi */}
                             <button
                                 onClick={() => handleChat(doctor.id)}
-                                className='w-12 h-12 bg-purple-100 rounded-full flex justify-center items-center hover:bg-purple-200 transition'
-                                style={{backgroundColor: '#7B7BFF'}} // Rangni rasmdagiga yaqinroq sozladim
+                                className='w-12 h-12 rounded-full flex justify-center items-center hover:bg-purple-200 transition'
+                                style={{backgroundColor: '#7B7BFF'}}
                             >
                                 <LuMessageSquareText className='text-white text-lg' /> 
                             </button>
@@ -222,8 +235,8 @@ function Yoqtirishlar() {
                             {/* Qo'ng'iroq tugmasi */}
                             <button
                                 onClick={() => handleCall(doctor.id)}
-                                className={`w-12 h-12 bg-green-500 rounded-full flex justify-center items-center hover:bg-green-600 transition`}
-                                style={{backgroundColor: '#00E42A'}} // Rangni rasmdagiga yaqinroq sozladim
+                                className={`w-12 h-12 rounded-full flex justify-center items-center hover:bg-green-600 transition`}
+                                style={{backgroundColor: '#00E42A'}}
                             >
                                 <FiPhone className={`text-white text-lg`} /> 
                             </button>
@@ -231,8 +244,8 @@ function Yoqtirishlar() {
                             {/* O'chirish tugmasi - MODALNI OCHADI */}
                             <button
                                 onClick={() => handleRemoveFavoriteModalOpen(doctor.id)}
-                                className={`w-12 h-12 bg-red-400 rounded-full flex justify-center items-center hover:bg-red-500 transition`}
-                                style={{backgroundColor: accentRed}} // Rangni rasmdagiga yaqinroq sozladim
+                                className={`w-12 h-12 rounded-full flex justify-center items-center hover:bg-red-500 transition`}
+                                style={{backgroundColor: accentRed}}
                             >
                                 <RiDeleteBin6Line className={`text-white text-lg`} />
                             </button>
@@ -247,7 +260,10 @@ function Yoqtirishlar() {
                     <div className="bg-white rounded-xl shadow-2xl mx-6 p-6 w-11/12 max-w-sm">
                         
                         {/* Modal matni */}
-                        <h3 className={`text-center text-lg font-semibold text-[${darkText}] mb-6`}>
+                        <h3 
+                            className={`text-center text-lg font-semibold mb-6`}
+                            style={{color: darkText}}
+                        >
                             Rostdan ham o'chirmoqchimisiz?
                         </h3>
 
@@ -255,15 +271,17 @@ function Yoqtirishlar() {
                             {/* Yo'q / Bekor qilish tugmasi */}
                             <button
                                 onClick={handleCancelRemoveFavorite}
-                                className={`w-full h-12 bg-[${primaryTeal}] text-white text-base font-semibold rounded-xl hover:bg-cyan-600 transition`}
+                                className={`w-full h-12 text-white text-base font-semibold rounded-xl hover:bg-cyan-600 transition`}
+                                style={{backgroundColor: primaryTeal}}
                             >
                                 Yo'q
                             </button>
 
-                            {/* Ha / Tasdiqlash tugmasi (Borderli, rasmdagidek) */}
+                            {/* Ha / Tasdiqlash tugmasi (Borderli) */}
                             <button
                                 onClick={handleConfirmRemoveFavorite}
-                                className={`w-full h-12 border border-[${primaryTeal}] text-[${primaryTeal}] text-base font-semibold rounded-xl hover:bg-gray-100 transition`}
+                                className={`w-full h-12 border text-base font-semibold rounded-xl hover:bg-gray-100 transition`}
+                                style={{borderColor: primaryTeal, color: primaryTeal}}
                             >
                                 Ha
                             </button>
