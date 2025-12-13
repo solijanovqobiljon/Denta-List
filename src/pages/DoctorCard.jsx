@@ -1,7 +1,7 @@
 import React from "react";
 import { HiOutlineLocationMarker } from "react-icons/hi";
 import { Link, useNavigate } from "react-router-dom";
-
+import logo from "../assets/cardlogo.png"
 function DoctorCard({ img, name, job, rating, distance, price, patients, exp, service }) {
 
   const navigate = useNavigate()
@@ -41,6 +41,9 @@ function DoctorCard({ img, name, job, rating, distance, price, patients, exp, se
         <div className="flex items-center gap-4 mt-1 text-[12px] text-gray-600">
           <span>{patients} ta bemor</span>
           <span>{exp}+ tajriba</span>
+
+      <img className="w-[65px] ml-[50px] mt-[-30px] rounded-[12px]" src={logo} alt="" />
+      
         </div>
 
         <p className="font-semibold text-[13px] mt-1">

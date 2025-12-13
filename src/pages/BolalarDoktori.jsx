@@ -105,7 +105,8 @@ function Boshsaxifa() {
             className={`px-4 py-2 rounded-2xl text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
               activeFilter === "ayol"
                 ? "bg-[#BDF3FF] text-black"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                : "bg-[#ea11b0a1] text-white hover:bg-gray-300"
+
             }`}
           >
             Ayol doktori

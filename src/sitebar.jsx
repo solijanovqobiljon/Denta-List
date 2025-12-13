@@ -31,7 +31,7 @@ function Sitebar() {
     const navItems = [
         { path: '/boshsaxifa', Icon: FiHome, label: 'Bosh saxifa' },
         { path: '/shifokorlar', Icon: FaUserDoctor, label: 'Shifokorlarim' },
-        { path: '/yoqtirishlar', Icon: FaRegHeart, label: 'Yoqtirishlar' },
+        { path: '/yoqtirishlar', Icon: FaRegHeart, label: 'Tanlanganlar' },
         { path: '/profil', Icon: FiUser, label: 'Profil' },
     ];
 
