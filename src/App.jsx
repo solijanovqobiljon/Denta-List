@@ -25,7 +25,7 @@ import BolalarDoktori from "./pages/BolalarDoktori";
 import QabulgaYozilish from "../src/pages/QabulgayozilishB";
 import QabulgaYozilish2B from "./pages/QabulgaYozilish2B";
 import QabulTasdiqlash from "./pages/QabulTasdiqlash";
-import Engyaqin from "./Engyaqin";
+import Engyaqin from "./pages/Engyaqin";
 
 const App = () => {
   return (
