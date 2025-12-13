@@ -23,9 +23,9 @@ import EngYaxshi from "./pages/Engyaxshi";
 import AyolDoktor from "./pages/AyolDoktor";
 import BolalarDoktori from "./pages/BolalarDoktori";
 import QabulgaYozilish from "../src/pages/QabulgayozilishB";
+import Engyaqin from "./pages/engyaqin";
 import QabulgaYozilish2B from "./pages/QabulgaYozilish2B";
 import QabulTasdiqlash from "./pages/QabulTasdiqlash";
-import Engyaqin from "./pages/Engyaqin";
 
 const App = () => {
   return (
