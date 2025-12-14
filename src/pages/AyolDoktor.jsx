@@ -86,6 +86,19 @@ function Boshsaxifa() {
 
           </div>
 
+            {/* Ayol doktori - Aktiv rangi #BDF3FF dan PRIMARY_COLOR ga o'zgartirildi */}
+          <div
+            onClick={() => handleFilterClick("ayol", "/AyolDoktor")}
+            className={`px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
+                activeFilter === "ayol"
+                    ? `bg-[#F269CD] text-white` // Pushti
+                    : "bg-[#F269CD] text-white hover:bg-gray-300"
+            }`}
+
+          >
+            Ayol doktori
+          </div>
+
           {/* 24/7 - Aktiv rangi #BDF3FF dan LIGHT_ACCENT ga o'zgartirildi */}
           <div
             onClick={() => handleFilterClick("24_7", "/B24_7")}
@@ -124,18 +137,7 @@ function Boshsaxifa() {
             <CiStar className="text-lg text-gray-500" /> Eng yaxshi
           </div>
 
-          {/* Ayol doktori - Aktiv rangi #BDF3FF dan PRIMARY_COLOR ga o'zgartirildi */}
-          <div
-            onClick={() => handleFilterClick("ayol", "/AyolDoktor")}
-            className={`px-4 py-2 rounded-2xl flex items-center gap-2 text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
-                activeFilter === "ayol"
-                    ? `bg-[#F269CD] text-white` // Pushti
-                    : "bg-[#F269CD] text-white hover:bg-gray-300"
-            }`}
-
-          >
-            Ayol doktori
-          </div>
+        
 
           {/* Bolalar doktori - Aktiv rangi #BDF3FF dan LIGHT_ACCENT ga o'zgartirildi */}
           <div

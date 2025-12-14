@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+// ... (boshqa importlar o'zgarishsiz)
 import { 
     FaChevronLeft, 
     FaSearch, 
@@ -24,6 +25,7 @@ function Sharhlar() {
 
     // === STATE LAR ===
     const [reviewedDoctors, setReviewedDoctors] = useState([
+        // ... (Sharhlar ma'lumotlari o'zgarishsiz)
         {
             id: 1,
             name: "Dr. Jamshid Rahmonov",
@@ -34,6 +36,7 @@ function Sharhlar() {
             experience: 12, 
             price: "250 000",
             image: doctor1Img,
+            // ... review
             review: {
                 reviewerName: "Tohirov Azamat",
                 timeAgo: "2 kun avval",
@@ -52,6 +55,7 @@ function Sharhlar() {
             experience: 10, 
             price: "255 000",
             image: doctor2Img, 
+            // ... review
             review: {
                 reviewerName: "Tohirov Azamat",
                 timeAgo: "1 hafta avval",
@@ -62,7 +66,7 @@ function Sharhlar() {
         },
     ]);
 
-    // Tahrirlash modalini boshqarish
+    // ... (Tahrirlash state lari o'zgarishsiz)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [editingDoctorId, setEditingDoctorId] = useState(null);
     const [currentReviewText, setCurrentReviewText] = useState('');
@@ -73,9 +77,14 @@ function Sharhlar() {
     const darkText = '#272937';
     const accentRed = '#FF6B6B';
 
-    // === FUNKSIYALAR ===
+    // === YANGI FUNKSIYA: Doktor profiliga o'tish ===
+    const handleGoToDoctorProfile = (doctor) => {
+        // Shifokor ma'lumotlarini state orqali uzatish
+        // Misol uchun, /shifokorlar/123 kabi yo'nalishga o'tish
+        navigate(`/shifokorlar/${doctor.id}`, { state: { doctor } });
+    };
     
-    // Tahrirlashni bekor qilish (Modalni yopish)
+    // ... (boshqa funksiyalar o'zgarishsiz)
     const handleCancelEdit = () => {
         setIsEditModalOpen(false);
         setEditingDoctorId(null);
@@ -96,31 +105,19 @@ function Sharhlar() {
         navigate('/Notification'); 
     };
 
-    // Yo'q qilish funksiyasi (o'zgartirildi)
     const handleDeleteReview = (doctorId) => {
-        // O'chirishni tasdiqlash uchun alert/modal qo'yish yaxshi amaliyot,
-        // lekin soddalik uchun to'g'ridan-to'g'ri o'chiramiz:
-
         const doctorName = reviewedDoctors.find(d => d.id === doctorId)?.name;
-
-        // confirm() ishlatish (Browser dialog)
         if (window.confirm(`${doctorName} shifokori haqidagi sharhni rostdan ham o'chirmoqchimisiz?`)) {
-            
-            // Sharhni ro'yxatdan olib tashlash
             setReviewedDoctors(currentDoctors => 
                 currentDoctors.filter(doctor => doctor.id !== doctorId)
             );
-            
-            // Agar o'chirilayotgan sharh tahrirlanayotgan bo'lsa, tahrirlash oynasini yopish
             if (editingDoctorId === doctorId) {
                 handleCancelEdit();
             }
-
             console.log(`Sharh ${doctorId} o'chirildi`);
         }
     };
 
-    // Tahrirlash modalini ochish funksiyalari (o'zgarishsiz)
     const handleEditReview = (doctorId) => {
         const doctor = reviewedDoctors.find(d => d.id === doctorId);
         if (doctor) {
@@ -151,7 +148,6 @@ function Sharhlar() {
         handleCancelEdit();
     };
 
-    // Yulduzlarni render qilish funksiyasi (o'zgarishsiz)
     const renderStars = (count, clickable = false, setter = () => {}) => {
         const stars = [];
         for (let i = 0; i < 5; i++) {
@@ -215,7 +211,6 @@ function Sharhlar() {
                             className='bg-white rounded-2xl shadow-md p-4 flex flex-col'
                         >
                             {/* Shifokor kartochkasi kontenti... */}
-                            {/* ... (Bu qism o'zgarishsiz) ... */}
                             <div className='flex items-center space-x-4 mb-4'>
                                 <div className='relative flex-shrink-0'>
                                     <img src={doctor.image} alt={doctor.name} className="w-24 h-24 rounded-2xl object-cover" />
@@ -250,26 +245,24 @@ function Sharhlar() {
                             {/* Shifokor tugmalari... */}
                             <div className='flex items-center space-x-3 mb-4'>
                                 <button
-                                    //...
+                                    onClick={() => handleGoToDoctorProfile(doctor)} // YANGI FUNKSIYANI BOG'LASH
                                     className={`flex-1 h-12 border border-[${primaryTeal}] text-[${primaryTeal}] text-base font-semibold rounded-full hover:bg-cyan-50 transition`}
                                 >
                                     Profilni ko'rish
                                 </button>
                                 <button
-                                    //...
                                     className='w-12 h-12 bg-[#7B7BFF] rounded-full flex justify-center items-center hover:bg-purple-200 transition'
                                 >
                                     <LuMessageSquareText className='text-white text-lg' />  
                                 </button>
                                 <button
-                                    //...
                                     className={`w-12 h-12 bg-[#00E42A] rounded-full flex justify-center items-center hover:bg-green-200 transition`}
                                 >
                                     <FiPhone className={`text-white text-lg`} /> 
                                 </button>
                             </div>
-                            
                             {/* Sharh Kartochkasi (Pastki qism) */}
+                            {/* ... (Sharh kontenti qismi o'zgarishsiz) ... */}
                             <div className='pt-4 border-t border-gray-100'>
                                 <div className='flex justify-between items-start mb-2'>
                                     <div className='flex items-center space-x-3'>
@@ -291,7 +284,7 @@ function Sharhlar() {
                                         />
                                         <FaTrashAlt 
                                             className='text-base cursor-pointer hover:text-red-500 transition' 
-                                            onClick={() => handleDeleteReview(doctor.id)} // YANGILANGAN FUNKSIYA
+                                            onClick={() => handleDeleteReview(doctor.id)}
                                         />
                                     </div>
                                 </div>
@@ -306,13 +299,12 @@ function Sharhlar() {
                                     {renderStars(doctor.review.stars)}
                                 </div>
                             </div>
-
                         </div>
                     ))}
                 </div>
             ) : (
-                
                 // >>> SHARHNI TAHRIRLASH OYNASI/MODALI <<<
+                // ... (Tahrirlash modali qismi o'zgarishsiz) ...
                 <div className='p-4'>
                     <div className='bg-white rounded-2xl shadow-md p-4 flex flex-col'>
                         

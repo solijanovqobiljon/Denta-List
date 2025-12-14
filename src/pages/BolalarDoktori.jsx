@@ -65,7 +65,18 @@ function Boshsaxifa() {
           >
             Barchasi
           </div>
+ {/* Ayol doktori */}
+ <div
+            onClick={() => handleFilterClick("ayol", '/AyolDoktor')}
+            className={`px-4 py-2 rounded-2xl text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
+              activeFilter === "ayol"
+                ? "bg-[#BDF3FF] text-black"
+                : "bg-[#ea11b0a1] text-white hover:bg-gray-300"
 
+            }`}
+          >
+            Ayol doktori
+          </div>
           {/* 24/7 */}
           <div
             onClick={() => handleFilterClick("24_7", "/B24_7")}
@@ -99,18 +110,7 @@ function Boshsaxifa() {
             <CiStar className="text-lg" /> Eng yaxshi
           </div>
 
-          {/* Ayol doktori */}
-          <div
-            onClick={() => handleFilterClick("ayol", '/AyolDoktor')}
-            className={`px-4 py-2 rounded-2xl text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
-              activeFilter === "ayol"
-                ? "bg-[#BDF3FF] text-black"
-                : "bg-[#ea11b0a1] text-white hover:bg-gray-300"
-
-            }`}
-          >
-            Ayol doktori
-          </div>
+         
 
           {/* Bolalar doktori */}
           <div

@@ -7,10 +7,16 @@ function Sitebar() {
     const location = useLocation();
     const currentPath = location.pathname;
 
-    // Sitebar ko'rsatilishi kerak bo'lgan yo'llar ro'yxati
-    const allowedPaths = [
+    // 1. Shifokor profiliga o'tganda Sitebar ko'rinmay qolishini hal qilish uchun:
+    // Dinamik yo'llarni tekshirish funksiyasi
+    const isDynamicPath = (path) => {
+        // Agar yo'l '/shifokorlar/' bilan boshlansa, bu shifokor profili hisoblanadi (masalan, /shifokorlar/1, /shifokorlar/abc)
+        return path.startsWith('/shifokorlar/'); 
+    }
+
+    // Sitebar ko'rsatilishi kerak bo'lgan statik yo'llar ro'yxati
+    const staticPaths = [
         '/boshsaxifa',
-        '/shifokorlar',
         '/profil',
         '/Notification', 
         '/sharhlar', 
@@ -18,19 +24,19 @@ function Sitebar() {
         '/EngYaqin', 
         '/AyolDoktor', 
         '/BolalarDoktori', 
-        '/yoqtirishlar' 
+        '/yoqtirishlar',
+        '/mening-shifokorlarim' // 'Shifokorlarim' uchun yangi manzil
     ];
     
-    // >>>>>>>>>>> BU YERDA O'ZGARISH QILINDI <<<<<<<<<<<
-    // Joriy yo'l ruxsat berilgan yo'llar ichida bo'lmasa, yashiramiz.
-    if (!allowedPaths.includes(currentPath)) {
+    // Joriy yo'l ruxsat berilgan statik yoki dinamik yo'llar ichida bo'lmasa, Sitebarni yashiramiz.
+    if (!staticPaths.includes(currentPath) && !isDynamicPath(currentPath)) {
         return null; 
     }
 
-    // Navigatsiya bandlari
+    // 2. Navigatsiya bandlari - 'Shifokorlarim' manzilini yangi yo'lga o'zgartirdik.
     const navItems = [
         { path: '/boshsaxifa', Icon: FiHome, label: 'Bosh saxifa' },
-        { path: '/shifokorlar', Icon: FaUserDoctor, label: 'Shifokorlarim' },
+        { path: '/mening-shifokorlarim', Icon: FaUserDoctor, label: 'Shifokorlarim' }, // YO'L O'ZGARTIRILDI
         { path: '/yoqtirishlar', Icon: FaRegHeart, label: 'Tanlanganlar' },
         { path: '/profil', Icon: FiUser, label: 'Profil' },
     ];
@@ -42,7 +48,18 @@ function Sitebar() {
                 <ul className="m-auto w-[90%] flex justify-between"> 
                     
                     {navItems.map((item) => {
-                        const isActive = currentPath === item.path;
+                        // Dinamik yo'llarni hisobga olgan holda faol holatni tekshirish
+                        let isActive = currentPath === item.path;
+                        
+                        // Faqat /shifokorlar/:id yo'li uchun qo'shimcha tekshiruv (agar Sitebar elementining yo'li /shifokorlar bilan bog'liq bo'lsa)
+                        if (item.path === '/boshsaxifa' && isDynamicPath(currentPath)) {
+                            // Agar '/shifokorlar/...' da bo'lsa, 'Bosh sahifa' aktiv bo'lmasligi kerak
+                            isActive = false; 
+                        }
+
+                        // Agar joriy yo'l `/shifokorlar/:id` bo'lsa, hech qaysi asosiy navigatsiya aktiv bo'lmaydi
+                        // Lekin ikonka ranglari joriy pathga bog'liq bo'lganligi uchun, yuqoridagi 'isActive' logikasi yetarli.
+
                         const iconColor = isActive ? '#00BCE4' : 'text-gray-500';
                         const textColor = isActive ? '#00BCE4' : 'text-gray-500';
 
@@ -52,6 +69,7 @@ function Sitebar() {
                                     <item.Icon className={`m-auto text-[20px] ${iconColor}`} />
                                     <p className={`text-[12px] ${textColor} mt-1`}>{item.label}</p>
                                     
+                                    {/* Faol chiziqni ko'rsatish */}
                                     {isActive && (
                                         <hr className='w-5 m-auto border-[1.5px] rounded-3xl border-[#00BCE4]' />
                                     )}

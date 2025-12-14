@@ -38,7 +38,7 @@ function Profil_pages() {
 
     // Menyu elementlari ro'yxati (Tizimdan chiqish tugmasi endi modalni ochadi)
     const menuItems = [
-        { Icon: FaUserDoctor, label: 'Mening shifokorlarim', path: '/shifokorlar' },
+        { Icon: FaUserDoctor, label: 'Mening shifokorlarim', path: '/mening-shifokorlarim' },
         { Icon: IoIosHeartEmpty, label: 'Yoqtirishlar', path: '/yoqtirishlar' },
         { Icon: BsChatText, label: 'Sharhlar', path: '/sharhlar' },
         { Icon: MdOutlineModeEdit, label: "Ma'lumotlarni o'zgartirish", path: '/profile' }, 
