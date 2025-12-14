@@ -53,7 +53,12 @@ function DoctorCard({ id, img, name, job, rating, distance, price, patients, exp
         </p>
         {/* O'zgartirish 2: Statik "/shifokorlar" o'rniga dinamik URL yaratish */}
         {/* Endi profilga o'tish manzili /shifokorlar/1, /shifokorlar/2 va hokazo bo'ladi */}
-        <Link to={`/shifokorlar/${id}`} > 
+        <Link
+ to={`/shifokorlar/${id}`}
+ state={{ 
+        doctor: { id, img, name, job, rating, distance, price, patients, exp, service } 
+    }}
+ > 
         <button className="w-full bg-[#00C1F3] text-white py-2 rounded-full mt-2 text-[14px]">
           Profilni ko‘rish
         </button>
