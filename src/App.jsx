@@ -28,6 +28,8 @@ import QabulgaYozilish from "../src/pages/QabulgayozilishB";
 import Engyaqin from "./pages/engyaqin";
 import QabulgaYozilish2B from "./pages/QabulgaYozilish2B";
 import QabulTasdiqlash from "./pages/QabulTasdiqlash";
+import Chat from "./pages/chat";
+import OveralChats from "./pages/OveralChats";
 
 const App = () => {
   return (
@@ -66,7 +68,8 @@ const App = () => {
       <Route path="qabulgayozilish2" element={<QabulgaYozilish2B />} />
       <Route path="qabultasdiqlash" element={<QabulTasdiqlash />} />
       <Route path="engyaqin" element={<Engyaqin />} />
-
+      <Route path="/chat/:id" element={<Chat />} />
+      <Route path="chats" element={<OveralChats />} />
     </Routes>
     <Sitebar/>
     </div>

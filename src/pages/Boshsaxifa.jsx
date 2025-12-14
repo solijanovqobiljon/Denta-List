@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { TbMessage } from "react-icons/tb";
-import { HiLocationMarker } from "react-icons/hi";
+import { HiLocationMarker, HiOutlineChatAlt2 } from "react-icons/hi";
 import { FiSearch } from "react-icons/fi";
 import { IoNotificationsOutline } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa";
@@ -30,6 +30,10 @@ function Boshsaxifa() {
     }
   };
 
+const goToChats = () => {
+  navigate("/chats");
+}
+
 const notification = () => {
 navigate("/Notification")
 }
@@ -50,9 +54,20 @@ navigate("/Notification")
     <div className="w-full mx-auto bg-white mb-[60px] overflow-hidden">
       {/* Header qismi o‘zgarmadi */}
       <div className="bg-[#00C1F3] md:px-10 xl:px-[100px] lg:px-[70px] p-5 rounded-b-[30px] relative">
-        <div className="">
-          <TbMessage className="text-3xl text-white" />
-        </div>
+        <div className="flex justify-between items-center">
+          {/* <TbMessage className="text-3xl text-white" /> */}
+          <button
+            onClick={goToChats}
+            className="relative text-white hover:opacity-80 transition"
+          >
+            <HiOutlineChatAlt2 className="text-3xl" />
+            {/* Chats count - Agar xabarlar bo'lsa ko'rsatish mumkin */}
+            <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+              0
+            </span>
+          </button>
+        </div>
+
         <div className="text-white mt-8">
           <h1 className="text-lg md:text-2xl font-semibold flex items-center gap-1">
             Salom Azamat
@@ -93,7 +108,7 @@ navigate("/Notification")
           >
             Barchasi
           </div>
-  <div
+   <div
             onClick={() => handleFilterClick("ayol", "/AyolDoktor")}
             className={`px-4 py-2 rounded-2xl text-[12px] sm:text-[14px] font-medium cursor-pointer transition-all ${
               activeFilter === "ayol"
